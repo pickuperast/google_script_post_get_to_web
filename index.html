@@ -1,0 +1,336 @@
+<body class="main-bg">
+  <div class="header">
+    <!--Employer-->
+    <input id="btn_paid_card" type="button" onclick="show_tab(1);" class="button employers-color" value="Employer">
+    <!--Employee-->
+    <input id="btn_paid" type="button" onclick="show_tab(0);" class="button employees-color" value="Employee">
+    <!--Search-->
+    <!--<input id="btn_paid_mark" type="button" onclick="send_check_to_local_storage(this, 2);" class="button sky-blue" value="Edit">-->
+    <!--<input id="btn_paid_mark" type="button" onclick="show_tab(2);" class="button sky-blue" value="About">-->
+  </div>
+  <section id="search_box">
+    <fieldset>
+      <legend>Search</legend>
+      <table>
+        <tr>
+          <td valign="top" class="employers-color" style="width: 15%">
+            <table>
+              <tr>
+                <td class="header-4">Name</td>
+                <td><input id="search_employer_name" type="text" class="input-search"></td>
+                <td><input id="search_employer_contract" type="checkbox" class="checkbox"></td>
+                <td class="header-4">Contract</td>
+              </tr>
+              <tr>
+                <td class="header-4">Phone</td>
+                <td colspan="3"><input id="search_employer_phone" type="text" class="input-search"></td>
+              </tr>
+              <tr>
+                <td><input type="button" value="search" onclick="search_employer();"></td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" class="employees-color" style="width: 55%">
+            <table>
+              <tr>
+                <td class="header-4_for_input"><input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input crossout1" onclick="DisableEnableEmployee(this,0);" value="Name"></td>
+                <td>
+                  <input id="search_employee_name" type="text" class="input-search" disabled>
+                </td>
+                <td>
+                  <input id="search_employee_available" type="checkbox" class="checkbox" disabled>
+                </td>
+                <td class="header-4">
+                  <input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input crossout1" onclick="DisableEnableEmployee(this,2);" value="Available">
+                </td>
+                <td>
+                  <input id="search_employee_living" type="checkbox" class="checkbox" disabled>
+                </td>
+                <td class="header-4">
+                  <input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input crossout1" onclick="DisableEnableEmployee(this,3);" value="Living">
+                </td>
+              </tr>
+              <tr>
+                <td class="header-4"><input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input crossout1" onclick="DisableEnableEmployee(this,1);" value="Phone"></td>
+                <td colspan="5"><input id="search_employee_phone" type="text" class="input-search" disabled></td>
+              </tr>
+              <tr>
+                <td><input type="button" value="search" onclick="search_employee();"></td>
+              </tr>
+
+
+              <!--Name<input id="search_employee_name" type="text" class="input-search"><input id="search_employee_available" type="checkbox" class="checkbox">Available<input id="search_employee_living" type="checkbox" class="checkbox">Living
+            <br> Phone
+            <input id="search_employee_phone" type="text" class="input-search">
+            <br><input type="button" value="search" onclick="search_employee();">-->
+
+
+
+
+            </table>
+            <table>
+              <tr>
+                <td>
+                  <fieldset>
+                    <legend>Coming</legend>
+                    <input id="search_employee_full_time" type="checkbox" class="checkbox" disabled><input type="text" readonly="readonly" class="crossout1 bg-alpha input-clickable header-4_for_input" onclick="DisableEnableEmployee(this,4);" value="Full Time"><br><input id="search_employee_part_time" type="checkbox" class="checkbox" disabled><input type="text" readonly="readonly" class="crossout1 bg-alpha input-clickable header-4_for_input" onclick="DisableEnableEmployee(this,5);" value="Part Time"><br><input id="search_employee_night" type="checkbox" class="checkbox" disabled><input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input crossout1" onclick="DisableEnableEmployee(this,6);" value="Night">
+                  </fieldset>
+                </td>
+                <td valign="top" class="header-4_for_input_auto"><input id="search_employee_car" type="checkbox" class="checkbox" disabled><input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input_long crossout1" onclick="DisableEnableEmployee(this,7);" value="Car"><br><input id="search_employee_drivers_license" type="checkbox" class="checkbox" disabled><input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input_long crossout1" onclick="DisableEnableEmployee(this,8);" value="Driver's License"><br><input id="search_employee_english" type="checkbox" class="checkbox" disabled><input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input_long crossout1" onclick="DisableEnableEmployee(this,9);" value="English"></td>
+                <td valign="top"><input id="search_employee_zk" type="checkbox" class="checkbox" disabled><input type="text" readonly="readonly" class="bg-alpha input-clickable header-4_for_input crossout1" onclick="DisableEnableEmployee(this,10);" value="ZK"><br>&nbsp;<br>&nbsp;</td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!--Employers-->
+
+      <!--Employers end-->
+      <!--Employees-->
+
+      <!--Employees end-->
+
+    </fieldset>
+  </section>
+  <!--Employers search-->
+  <section>
+    <fieldset id="employers_search">
+      <legend>Employers</legend>
+
+    </fieldset>
+  </section>
+  <!--Employees search-->
+  <section>
+    <fieldset id="employees_search">
+      <legend>Employees</legend>
+
+    </fieldset>
+  </section>
+
+  <div id="employee_main" class="modal">
+    <div class="modal-content-employee">
+      <!--
+  var employee = values[0];
+  var address = values[1];
+  var phone = values[2];
+  var age = values[3];
+  var in_the_usa = values[4];
+  var references = values[5];
+  var living = values[6];
+  var full_time = values[7];
+  var part_time = values[8];
+  var night = values[9];
+  var car = values[10];
+  var driver_lic = values[11];
+  var english = values[12];
+  var zk = values[13];
+  var available = values[14];
+  var reg_date = values[15];//mm.dd.yy
+  -->
+      <section id="employee_inputs">
+        <div class="rTable">
+          <div class="rTableBody">
+            <!--1st row-->
+            <div class="rTableRow">
+              <p id="employee_Header" class="header-color bold_center">Employee Form</p>
+            </div>
+            <!--2nd row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color">1.Employee</div>
+              <div class="rTableCell header-2"><input id="employee_0" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Living</div>
+              <div class="rTableCell header-4"><input id="employee_6" type="checkbox"></div>
+            </div>
+            <!--3rd row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color">2.Address</div>
+              <div class="rTableCell header-2"><input id="employee_1" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Full Time</div>
+              <div class="rTableCell header-4"><input id="employee_7" type="checkbox"></div>
+            </div>
+            <!--4th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color">3.Phone</div>
+              <div class="rTableCell header-2"><input id="employee_2" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Part Time</div>
+              <div class="rTableCell header-4"><input id="employee_8" type="checkbox"></div>
+            </div>
+            <!--5th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color">4.Age</div>
+              <div class="rTableCell header-2"><input id="employee_3" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Night</div>
+              <div class="rTableCell header-4"><input id="employee_9" type="checkbox"></div>
+            </div>
+            <!--6th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color">5.In the USA</div>
+              <div class="rTableCell header-2"><input id="employee_4" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Car</div>
+              <div class="rTableCell header-4"><input id="employee_10" type="checkbox"></div>
+            </div>
+            <!--7th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color">6.References</div>
+              <div class="rTableCell header-2"><input id="employee_5" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Driver Lic</div>
+              <div class="rTableCell header-4"><input id="employee_11" type="checkbox"></div>
+            </div>
+            <!--8th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color">7.Reg. Date</div>
+              <div class="rTableCell header-2"><input id="employee_15" type="date" class="header-1"></div>
+              <div class="rTableCell header-3 text-color">English</div>
+              <div class="rTableCell header-4"><input id="employee_12" type="checkbox"></div>
+            </div>
+            <!--9th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color"></div>
+              <div class="rTableCell header-2"></div>
+              <div class="rTableCell header-3 text-color">ZK</div>
+              <div class="rTableCell header-4"><input id="employee_13" type="checkbox"></div>
+            </div>
+            <!--10th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1 text-color"></div>
+              <div class="rTableCell header-2"></div>
+              <div class="rTableCell header-3 text-color">Available</div>
+              <div class="rTableCell header-4"><input id="employee_14" type="checkbox"></div>
+            </div>
+            <!--11th row save  button-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1"></div>
+              <div class="rTableCell header-2"><input id="btn_employee_delete" type="button" onclick="$('#employer_main').hide();" class="sky-blue
+ right" value="delete"></div>
+              <div class="rTableCell header-3"><input type="button" onclick="$('#employee_main').hide();" class="sky-blue
+ right" value="close"></div>
+              <div class="rTableCell header-4"><input id="btn_employee_save" type="button" onclick="send_employee_to_local_storage(this);" class="sky-blue
+ right" value="save"></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="employer_main" class="modal">
+    <div class="modal-content-employer">
+      <!--
+    var contact_name = values[0];
+  var contact_phone = values[1];
+  var name = values[2];
+  var address = values[3];
+  var phone = values[4];
+  var start_year = values[5];//mm/dd/yy
+  var remarks = values[6];
+  var contact = values[7];
+  var living = values[8];
+  var full_time = values[9];
+  var part_time = values[10];
+  var night = values[11];
+  var car = values[12];
+  var drivers_lic = values[13];
+  var english = values[14];
+  var zk = values[15];
+  var contact_phone_second = values[16];
+  var id = values[17];
+  -->
+      <section id="employer_inputs">
+        <div class="rTable">
+          <div class="rTableBody">
+            <!--1st row-->
+            <div class="rTableRow">
+              <p id="employer_Header" class="header-color bold_center">Employer Form</p>
+            </div>
+            <!--2nd row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">
+                1.Contact name
+              </div>
+              <div class="rTableCell header-2"><input id="employer_0" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Living</div>
+              <div class="rTableCell header-4"><input id="employer_8" type="checkbox"></div>
+            </div>
+            <!--3rd row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">2.Contact phone</div>
+              <div class="rTableCell header-2"><input id="employer_1" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Full Time</div>
+              <div class="rTableCell header-4"><input id="employer_9" type="checkbox"></div>
+            </div>
+            <!--31rd row contact phone 2-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color"></div>
+              <div class="rTableCell header-2"><input id="employer_16" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Part Time</div>
+              <div class="rTableCell header-4"><input id="employer_10" type="checkbox"></div>
+            </div>
+            <!--4th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">3.Name</div>
+              <div class="rTableCell header-2"><input id="employer_2" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Night</div>
+              <div class="rTableCell header-4"><input id="employer_11" type="checkbox"></div>
+            </div>
+            <!--5th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">4.Address</div>
+              <div class="rTableCell header-2"><input id="employer_3" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Car</div>
+              <div class="rTableCell header-4"><input id="employer_12" type="checkbox"></div>
+            </div>
+            <!--6th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">5.Phone</div>
+              <div class="rTableCell header-2"><input id="employer_4" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">Driver's Lic</div>
+              <div class="rTableCell header-4"><input id="employer_13" type="checkbox"></div>
+            </div>
+            <!--7th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">6.Start Year</div>
+              <div class="rTableCell header-2"><input id="employer_5" type="date" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">English</div>
+              <div class="rTableCell header-4"><input id="employer_14" type="checkbox"></div>
+            </div>
+            <!--8th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">7.Remarks</div>
+              <div class="rTableCell header-2"><input id="employer_6" type="text" class="header-2"></div>
+              <div class="rTableCell header-3 text-color">ZK</div>
+              <div class="rTableCell header-4"><input id="employer_15" type="checkbox"></div>
+            </div>
+            <!--9th row-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long text-color">8.Contract</div>
+              <div class="rTableCell header-2"><input id="employer_7" type="checkbox"></div>
+              <div class="rTableCell header-3 text-color"></div>
+              <div class="rTableCell header-4"></div>
+            </div>
+            <!--11th row save  button-->
+            <div class="rTableRow">
+              <div class="rTableCell header-1-long"></div>
+              <div class="rTableCell header-2"><input id="btn_employer_delete" type="button" onclick="$('#employer_main').hide();" class="sky-blue
+ right" value="delete"></div>
+              <div class="rTableCell header-3"><input type="button" onclick="$('#employer_main').hide();" class="sky-blue
+ right" value="close"></div>
+              <div class="rTableCell header-4"><input id="btn_employer_save" type="button" onclick="send_employer_to_local_storage(this);" class="sky-blue
+ right" value="save"></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="about" class="modal">
+    <div class="modal-content-employee">
+      For all questions you can contact me via email: s.seidgaparov@gmail.com
+      <input type="button" onclick="$('#about').hide();" class="sky-blue
+ right" value="close">
+    </div>
+  </div>
+</body>
